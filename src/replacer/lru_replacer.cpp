@@ -30,7 +30,7 @@ bool LRUReplacer::victim(frame_id_t* frame_id) {
     //  选择合适的frame指定为淘汰页面,赋值给*frame_id
       if (LRUlist_.empty()) {
         // 没有可淘汰的页面
-        *frame_id = INVALID_FRAME_ID;
+        frame_id = nullptr;
         return false;
     }
 

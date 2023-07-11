@@ -163,7 +163,8 @@ int DiskManager::open_file(const std::string &path) {
     }
 
     // 更新文件打开列表
-
+    path2fd_[path]=fd;
+    fd2path_[fd]=path;
     return fd;  // 返回文件句柄
 }
 

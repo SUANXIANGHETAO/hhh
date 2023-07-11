@@ -53,9 +53,15 @@ class BufferPoolManager {
     }
     Page findpage(PageId page_id)
     {
-        for(int i=0;i<pool_size_;i++)
+        for(size_t i=0;i<pool_size_;i++)
         if(pages_[i].id_==page_id)
         return pages_[i];
+    }
+    Page* findpage2(PageId page_id)
+    {
+        for(size_t i=0;i<pool_size_;i++)
+        if(pages_[i].id_==page_id)
+        return &pages_[i];
     }
 
     ~BufferPoolManager() {

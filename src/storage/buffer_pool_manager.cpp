@@ -48,7 +48,7 @@ void BufferPoolManager::update_page(Page *page, PageId new_page_id, frame_id_t n
     // 3 重置page的data，更新page id
      // 1. 如果是脏页，写回磁盘，并且将dirty标志设置为false
     if (page->is_dirty()) {
-        disk_manager_->write_page(new_page_id.fd,new_page_id.page_no,page->data_,sizeof(page->get_data()));
+        disk_manager_->write_page(new_page_id.fd,new_page_id.page_no,page->get_data(),sizeof(page->get_data()));
         page->is_dirty_=false;
     }
   
@@ -87,6 +87,8 @@ if (it != page_table_.end()) {
    {
     if(static_cast<int>(page_table_.find(pages_[i].id_)->second)==static_cast<int>(frame_id))
     {
+        replacer_->pin(frame_id);
+
         pages_[i].pin_count_++;
          
     // 返回对应的页面指针
@@ -106,7 +108,8 @@ if (it != page_table_.end()) {
                 update_page(&pages_[j],pages_[j].id_,frame_id);
             }
             
-        disk_manager_->read_page(pages_[j].id_.fd,pages_[j].id_.page_no,pages_[j].data_,sizeof(pages_[j].get_data()));
+        disk_manager_->read_page(pages_[j].id_.fd,pages_[j].id_.page_no,pages_[j].get_data(),sizeof(pages_[j].get_data()));
+        replacer_->pin(frame_id);
         pages_[j].pin_count_++;
         return &pages_[j];
         }
@@ -181,16 +184,14 @@ bool BufferPoolManager::flush_page(PageId page_id) {
     }
 
     // 2. 无论 P 是否为脏都将其写回磁盘
-    for(int j=0;j<pool_size_;j++)
-    if(pages_[j].id_==page_id)
-    {
-    Page* page = &pages_[j];
-    disk_manager_->write_page(pages_[j].id_.fd,pages_[j].get_page_id().page_no,pages_[j].data_,sizeof(pages_[j].get_data())); // 假设使用 disk_manager_ 对象的 WritePage 方法写回磁盘
+   Page pp = findpage(page_id);
+   // Page* page = &pages_[j];
+    disk_manager_->write_page(pp.id_.fd,pp.get_page_id().page_no,pp.get_data(),sizeof(pp.get_data())); // 假设使用 disk_manager_ 对象的 WritePage 方法写回磁盘
     // 3. 更新 P 的 is_dirty_
-    pages_[j].is_dirty_ = false;
-    }
-    
+    findpage2(page_id)->is_dirty_ = false;
     return true;
+
+    
 }
 
 /**
@@ -209,12 +210,18 @@ Page* BufferPoolManager::new_page(PageId* page_id) {
     if (!find_victim_page(&frame_id)) {
         return nullptr;
     }
-    
     // 2. 在 fd 对应的文件分配一个新的 page_id
     page_id_t new_page_id = disk_manager_->allocate_page(page_id->fd);
-    if (new_page_id == INVALID_PAGE_ID) {
+        
+    if (static_cast<int>(new_page_id) == INVALID_PAGE_ID) {
         return nullptr;
     }
+        page_id->page_no = new_page_id;
+
+     page_table_[*page_id]  = frame_id;
+
+    disk_manager_->set_fd2pageno(page_id->fd,page_id->page_no+1);
+
     
     // 3. 将 frame 的数据写回磁盘
     bool flush_result = flush_page(*page_id);
@@ -227,8 +234,8 @@ Page* BufferPoolManager::new_page(PageId* page_id) {
     replacer_->pin(frame_id);
     pages_[static_cast<int>(frame_id)].pin_count_ = 1;
     // 5. 返回获得的 page
-    page_id->page_no=new_page_id;
-    return pages_ + frame_id;
+    //page_id->page_no=new_page_id;
+    return pages_+static_cast<int>(frame_id);
 }
 
 /**
@@ -245,9 +252,9 @@ bool BufferPoolManager::delete_page(PageId page_id) {
 
     else if(findpage(page_id).pin_count_!=0)
     return false;
-    disk_manager_->write_page(page_id.fd,page_id.page_no,findpage(page_id).data_,sizeof(findpage(page_id).get_data()));
-    delete_page(page_id);
-    findpage(page_id).reset_memory();
+    disk_manager_->write_page(page_id.fd,page_id.page_no,findpage(page_id).get_data(),sizeof(findpage(page_id).get_data()));
+    page_table_.erase(page_id);
+    findpage2(page_id)->reset_memory();
     free_list_.emplace_back((page_table_[page_id]));
 
     return true;
