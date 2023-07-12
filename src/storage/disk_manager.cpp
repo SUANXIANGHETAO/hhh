@@ -33,7 +33,11 @@ void DiskManager::write_page(int fd, page_id_t page_no, const char *offset, int 
     // 注意write返回值与num_bytes不等时 throw InternalError("DiskManager::write_page Error");
       off_t offset_in_file = static_cast<off_t>(page_no) * PAGE_SIZE; // 计算页面在磁盘文件中的偏移量
 
-    if (lseek(fd, offset_in_file, SEEK_SET) == -1) {  // 使用 lseek 定位到指定偏移量
+    if(lseek(fd,0,SEEK_SET) == -1)//定位到开头
+    {
+        throw InternalError("DiskManager::write_page Error");
+    }
+    if (lseek(fd, offset_in_file, SEEK_CUR) == -1) {  // 使用 lseek 定位到指定偏移量
         throw InternalError("DiskManager::write_page Error");
     }
 
