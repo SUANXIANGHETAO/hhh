@@ -24,6 +24,7 @@ See the Mulan PSL v2 for more details. */
 #include "replacer/replacer.h"
 
 class BufferPoolManager {
+    friend class RmFileHandle;
    private:
     size_t pool_size_;      // buffer_pool中可容纳页面的个数，即帧的个数
     Page *pages_;           // buffer_pool中的Page对象数组，在构造空间中申请内存空间，在析构函数中释放，大小为BUFFER_POOL_SIZE
