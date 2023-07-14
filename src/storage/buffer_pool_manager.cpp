@@ -166,11 +166,7 @@ Page* BufferPoolManager::new_page(PageId* page_id) {
         return nullptr;
     }
     *page_id = { page_id->fd, disk_manager_->allocate_page(page_id->fd) };
-    // auto page = &pages_[frame];
-    // update_page(page, *page_id, frame);
-    // replacer_->pin(frame);
-    // page->pin_count_++;
-    // return &pages_[frame];
+  
     Page* page = &pages_[frame_id];
     update_page(page, *page_id, frame_id);
     replacer_->pin(frame_id);
@@ -193,26 +189,7 @@ bool BufferPoolManager::delete_page(PageId page_id) {
         // 2.2  If P exists, but has a non-zero pin-count, return false. Someone is using the page.
         // 3.   Otherwise, P can be deleted. Remove P from the page table, reset its metadata and return it to the free
         // list.
-    // std::scoped_lock lock{ latch_ };
-    // std::unordered_map<PageId, frame_id_t, PageIdHash>::iterator it = page_table_.find(page_id);
-    // if (it == page_table_.end()) {
-    //     return true;
-    // }
-    // else {
-    //     frame_id_t fid = it->second;
-    //     Page* P = &pages_[fid];
-    //     if (P->pin_count_ != 0) {
-    //         return false;
-    //     }
-    //     else {
-    //         disk_manager_->deallocate_page(page_id.page_no);
-    //         page_id.page_no = INVALID_PAGE_ID;
-    //         update_page(P, page_id, fid);
-    //         free_list_.push_back(fid);
-    //         return true;
-    //     }
-    // }
-    // return false;
+
     std::unique_lock<std::mutex> lock(latch_);
 
     auto it = page_table_.find(page_id);
