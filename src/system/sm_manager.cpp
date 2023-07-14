@@ -188,7 +188,20 @@ void SmManager::create_table(const std::string& tab_name, const std::vector<ColD
  * @param {Context*} context
  */
 void SmManager::drop_table(const std::string& tab_name, Context* context) {
+     if (!db_.is_table(tab_name)) {
+        throw TableNotFoundError(tab_name);
+    }
     
+    // 关闭并删除文件句柄
+    fhs_.erase(tab_name);
+    
+    rm_manager_->close_file(fhs_[tab_name].get());
+    rm_manager_->destroy_file(tab_name);
+
+    // 从数据库中删除表元数据
+    db_.tabs_.erase(tab_name);
+
+    flush_meta();
 }
 
 /**
@@ -198,7 +211,40 @@ void SmManager::drop_table(const std::string& tab_name, Context* context) {
  * @param {Context*} context
  */
 void SmManager::create_index(const std::string& tab_name, const std::vector<std::string>& col_names, Context* context) {
+     // 检查表是否存在于数据库中
+    if (!db_.is_table(tab_name)) {
+        throw TableNotFoundError(tab_name);
+    }
+
+    // 获取表元数据
+    TabMeta& table = db_.tabs_[tab_name];
+
+    // 检查字段是否存在于表中
+    for (const std::string& col_name : col_names) {
+        if (!table.is_col(col_name)) {
+            throw ColumnNotFoundError(col_name);
+        }
+    }
+
+    // 创建索引
+
+    // 1. 根据 col_names 构建索引键的字段列表
+    std::vector<ColMeta> key_columns;
+    int len = 0;
+    for (const std::string& col_name : col_names) {
+        len += (*table.get_col(col_name)).len;
+        key_columns.push_back(*table.get_col(col_name));
+    }
+
+    // 2. 创建索引对象
     
+    IndexMeta index{tab_name,len,col_names.size(),key_columns};
+    // 3. 更新表元数据中的索引信息
+    table.indexes.push_back(index);
+
+    // 4. 将索引写入磁盘
+
+    flush_meta();
 }
 
 /**
@@ -208,7 +254,38 @@ void SmManager::create_index(const std::string& tab_name, const std::vector<std:
  * @param {Context*} context
  */
 void SmManager::drop_index(const std::string& tab_name, const std::vector<std::string>& col_names, Context* context) {
-    
+     // 1. 找到要删除的索引对象
+    IndexMeta* index_to_delete = nullptr;
+    TabMeta& table = db_.tabs_[tab_name];
+   for(auto& index:table.indexes) {
+            if(index.col_num == col_names.size()) {
+                size_t i = 0;
+                for(; i < index.col_num; ++i) {
+                    if(index.cols[i].name.compare(col_names[i]) != 0)
+                        break;
+                }
+                if(i == index.col_num)
+                *index_to_delete = index;
+            }
+        }
+    // 如果找到了要删除的索引对象，则执行删除操作
+    if (index_to_delete != nullptr) {
+        // 2. 从存储中删除索引对象
+        table.indexes.erase(
+            std::remove(table.indexes.begin(), table.indexes.end(), index_to_delete),
+            table.indexes.end()
+        );
+        
+        // 在此处释放索引对象的内存，避免内存泄漏
+        delete index_to_delete;
+        index_to_delete = nullptr;
+        
+        // 输出删除成功的消息或进行其他必要的处理
+        std::cout << "删除索引成功" << std::endl;
+    } else {
+        // 没有找到要删除的索引对象
+        std::cout << "未找到要删除的索引" << std::endl;
+    }
 }
 
 /**
@@ -218,5 +295,40 @@ void SmManager::drop_index(const std::string& tab_name, const std::vector<std::s
  * @param {Context*} context
  */
 void SmManager::drop_index(const std::string& tab_name, const std::vector<ColMeta>& cols, Context* context) {
+    // 查找要删除的索引
+    IndexMeta* index_to_delete = nullptr;
+    TabMeta& table = db_.tabs_[tab_name];
+    std::vector<std::string> names;
+
+    int len=0;
+    for(auto c:cols)
+    {
+        len+=c.len;
+        names.push_back(c.name);
+    }
+    IndexMeta index{tab_name,len,cols.size(),cols};
     
+    //判断是否为索引
+    {
+        if(table.is_index(names))
+        {
+            *index_to_delete = index;
+        }
+    }
+    
+    if (index_to_delete != nullptr) {
+        // 从存储中删除索引对象
+        table.indexes.erase(
+            std::remove(table.indexes.begin(), table.indexes.end(), index_to_delete),
+            table.indexes.end()
+        );
+
+        // 释放索引对象内存
+        delete index_to_delete;
+        index_to_delete = nullptr;
+
+        std::cout << "索引删除成功" << std::endl;
+    } else {
+        std::cout << "未找到要删除的索引" << std::endl;
+    }
 }
