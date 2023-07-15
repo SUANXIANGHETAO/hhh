@@ -31,21 +31,22 @@ void DiskManager::write_page(int fd, page_id_t page_no, const char *offset, int 
     // 1.lseek()定位到文件头，通过(fd,page_no)可以定位指定页面及其在磁盘文件中的偏移量
     // 2.调用write()函数
     // 注意write返回值与num_bytes不等时 throw InternalError("DiskManager::write_page Error");
+     
      // 1. 确保文件描述符有效
     if (fd < 0) {
-        throw InternalError("Invalid file descriptor");
+        throw InternalError("DiskManager::write_page Error");
     }
 
     // 2. 定位到指定页面及其在磁盘文件中的偏移量
     off_t offset_in_file = lseek(fd, page_no * PAGE_SIZE, SEEK_SET);
     if (offset_in_file == -1) {
-        throw InternalError("Failed to seek to the specified page");
+        throw InternalError("DiskManager::write_page Error");
     }
 
     // 3. 调用 write() 函数进行写入
     ssize_t bytes_written = write(fd, offset, num_bytes);
     if (bytes_written == -1) {
-        throw InternalError("Failed to write page");
+        throw InternalError("DiskManager::write_page Error");
     }
 
     // 4. 检查实际写入的字节数是否符合期望
@@ -165,16 +166,21 @@ int DiskManager::open_file(const std::string &path) {
     // Todo:
     // 调用open()函数，使用O_RDWR模式
     // 注意不能重复打开相同文件，并且需要更新文件打开列表
+
+    //如果路径不是文件路径 则抛出异常
       if (!is_file(path)) {
         throw FileNotFoundError(path);
     }
+    //如果文件已经打开 抛出重复打开异常
     if (path2fd_.find(path) != path2fd_.end()) {
         throw UnixError();
     }
+
     int fd = open(path.c_str(), O_RDWR);
     if (fd < 0) {
         throw UnixError();
     }
+    //更新文件打开列表
     path2fd_.insert(std::make_pair(path, fd));
     fd2path_.insert(std::make_pair(fd, path));
     return fd;
@@ -188,9 +194,13 @@ void DiskManager::close_file(int fd) {
     // Todo:
     // 调用close()函数
     // 注意不能关闭未打开的文件，并且需要更新文件打开列表
+    
+    //文件尚未打开 抛出文件未打开异常
       if (fd2path_.find(fd) == fd2path_.end()) {
         throw FileNotOpenError(fd);
     }
+
+    //更新文件打开列表
     path2fd_.erase(fd2path_[fd]);
     fd2path_.erase(fd);
     close(fd);
