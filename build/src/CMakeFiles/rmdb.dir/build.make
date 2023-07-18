@@ -73,15 +73,15 @@ src/CMakeFiles/rmdb.dir/rmdb.cpp.o: src/CMakeFiles/rmdb.dir/flags.make
 src/CMakeFiles/rmdb.dir/rmdb.cpp.o: ../src/rmdb.cpp
 src/CMakeFiles/rmdb.dir/rmdb.cpp.o: src/CMakeFiles/rmdb.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanghanghua/src/db2023/db2023/rmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/rmdb.dir/rmdb.cpp.o"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/rmdb.dir/rmdb.cpp.o -MF CMakeFiles/rmdb.dir/rmdb.cpp.o.d -o CMakeFiles/rmdb.dir/rmdb.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/rmdb.cpp
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/rmdb.dir/rmdb.cpp.o -MF CMakeFiles/rmdb.dir/rmdb.cpp.o.d -o CMakeFiles/rmdb.dir/rmdb.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/rmdb.cpp
 
 src/CMakeFiles/rmdb.dir/rmdb.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/rmdb.dir/rmdb.cpp.i"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/rmdb.cpp > CMakeFiles/rmdb.dir/rmdb.cpp.i
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/rmdb.cpp > CMakeFiles/rmdb.dir/rmdb.cpp.i
 
 src/CMakeFiles/rmdb.dir/rmdb.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/rmdb.dir/rmdb.cpp.s"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/rmdb.cpp -o CMakeFiles/rmdb.dir/rmdb.cpp.s
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/rmdb.cpp -o CMakeFiles/rmdb.dir/rmdb.cpp.s
 
 # Object files for target rmdb
 rmdb_OBJECTS = \

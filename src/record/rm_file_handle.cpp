@@ -59,7 +59,23 @@ Rid RmFileHandle::insert_record(char* buf, Context* context) {
  * @param {char*} buf 要插入记录的数据
  */
 void RmFileHandle::insert_record(const Rid& rid, char* buf) {
-    
+     // 获取指定的page handle
+    RmPageHandle ph = fetch_page_handle(rid.page_no);
+
+    // 设置指定位置的位图
+    Bitmap::set(ph.bitmap, rid.slot_no);
+
+    // 更新page handle的数据结构
+    ph.page_hdr->num_records++;
+
+    // 将buf复制到指定位置的slot
+    char* slot = ph.get_slot(rid.slot_no);
+    memcpy(slot, buf, file_hdr_.record_size);
+
+    // 如果页面满了，更新file_hdr_.first_free_page_no
+    if (ph.page_hdr->num_records == file_hdr_.num_records_per_page) {
+        file_hdr_.first_free_page_no = ph.page_hdr->next_free_page_no;
+    }
 }
 
 /**

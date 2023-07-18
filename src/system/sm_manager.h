@@ -77,4 +77,26 @@ class SmManager {
     void drop_index(const std::string& tab_name, const std::vector<std::string>& col_names, Context* context);
     
     void drop_index(const std::string& tab_name, const std::vector<ColMeta>& col_names, Context* context);
+
+  
+
+
+
+void cleanup_database_resources() {
+    // 释放数据文件句柄
+    fhs_.clear();
+
+    // 释放索引文件句柄
+    ihs_.clear();
+
+    // 清理缓冲池中的页面
+    //buffer_pool_manager_->flush_all_pages();
+}
+
+void close_database() {
+    // 释放数据库对象
+    delete &db_;
+    // 关闭磁盘管理器
+    //disk_manager_->close_file();
+}
 };

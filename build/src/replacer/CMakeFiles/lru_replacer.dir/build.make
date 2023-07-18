@@ -73,15 +73,15 @@ src/replacer/CMakeFiles/lru_replacer.dir/lru_replacer.cpp.o: src/replacer/CMakeF
 src/replacer/CMakeFiles/lru_replacer.dir/lru_replacer.cpp.o: ../src/replacer/lru_replacer.cpp
 src/replacer/CMakeFiles/lru_replacer.dir/lru_replacer.cpp.o: src/replacer/CMakeFiles/lru_replacer.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanghanghua/src/db2023/db2023/rmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/replacer/CMakeFiles/lru_replacer.dir/lru_replacer.cpp.o"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/replacer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/replacer/CMakeFiles/lru_replacer.dir/lru_replacer.cpp.o -MF CMakeFiles/lru_replacer.dir/lru_replacer.cpp.o.d -o CMakeFiles/lru_replacer.dir/lru_replacer.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/replacer/lru_replacer.cpp
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/replacer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/replacer/CMakeFiles/lru_replacer.dir/lru_replacer.cpp.o -MF CMakeFiles/lru_replacer.dir/lru_replacer.cpp.o.d -o CMakeFiles/lru_replacer.dir/lru_replacer.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/replacer/lru_replacer.cpp
 
 src/replacer/CMakeFiles/lru_replacer.dir/lru_replacer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lru_replacer.dir/lru_replacer.cpp.i"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/replacer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/replacer/lru_replacer.cpp > CMakeFiles/lru_replacer.dir/lru_replacer.cpp.i
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/replacer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/replacer/lru_replacer.cpp > CMakeFiles/lru_replacer.dir/lru_replacer.cpp.i
 
 src/replacer/CMakeFiles/lru_replacer.dir/lru_replacer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lru_replacer.dir/lru_replacer.cpp.s"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/replacer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/replacer/lru_replacer.cpp -o CMakeFiles/lru_replacer.dir/lru_replacer.cpp.s
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/replacer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/replacer/lru_replacer.cpp -o CMakeFiles/lru_replacer.dir/lru_replacer.cpp.s
 
 # Object files for target lru_replacer
 lru_replacer_OBJECTS = \

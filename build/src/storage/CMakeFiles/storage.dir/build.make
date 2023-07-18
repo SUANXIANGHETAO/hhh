@@ -73,43 +73,43 @@ src/storage/CMakeFiles/storage.dir/disk_manager.cpp.o: src/storage/CMakeFiles/st
 src/storage/CMakeFiles/storage.dir/disk_manager.cpp.o: ../src/storage/disk_manager.cpp
 src/storage/CMakeFiles/storage.dir/disk_manager.cpp.o: src/storage/CMakeFiles/storage.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanghanghua/src/db2023/db2023/rmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/storage/CMakeFiles/storage.dir/disk_manager.cpp.o"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/storage/CMakeFiles/storage.dir/disk_manager.cpp.o -MF CMakeFiles/storage.dir/disk_manager.cpp.o.d -o CMakeFiles/storage.dir/disk_manager.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/storage/disk_manager.cpp
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/storage/CMakeFiles/storage.dir/disk_manager.cpp.o -MF CMakeFiles/storage.dir/disk_manager.cpp.o.d -o CMakeFiles/storage.dir/disk_manager.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/storage/disk_manager.cpp
 
 src/storage/CMakeFiles/storage.dir/disk_manager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/storage.dir/disk_manager.cpp.i"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/storage/disk_manager.cpp > CMakeFiles/storage.dir/disk_manager.cpp.i
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/storage/disk_manager.cpp > CMakeFiles/storage.dir/disk_manager.cpp.i
 
 src/storage/CMakeFiles/storage.dir/disk_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/storage.dir/disk_manager.cpp.s"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/storage/disk_manager.cpp -o CMakeFiles/storage.dir/disk_manager.cpp.s
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/storage/disk_manager.cpp -o CMakeFiles/storage.dir/disk_manager.cpp.s
 
 src/storage/CMakeFiles/storage.dir/buffer_pool_manager.cpp.o: src/storage/CMakeFiles/storage.dir/flags.make
 src/storage/CMakeFiles/storage.dir/buffer_pool_manager.cpp.o: ../src/storage/buffer_pool_manager.cpp
 src/storage/CMakeFiles/storage.dir/buffer_pool_manager.cpp.o: src/storage/CMakeFiles/storage.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanghanghua/src/db2023/db2023/rmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/storage/CMakeFiles/storage.dir/buffer_pool_manager.cpp.o"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/storage/CMakeFiles/storage.dir/buffer_pool_manager.cpp.o -MF CMakeFiles/storage.dir/buffer_pool_manager.cpp.o.d -o CMakeFiles/storage.dir/buffer_pool_manager.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/storage/buffer_pool_manager.cpp
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/storage/CMakeFiles/storage.dir/buffer_pool_manager.cpp.o -MF CMakeFiles/storage.dir/buffer_pool_manager.cpp.o.d -o CMakeFiles/storage.dir/buffer_pool_manager.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/storage/buffer_pool_manager.cpp
 
 src/storage/CMakeFiles/storage.dir/buffer_pool_manager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/storage.dir/buffer_pool_manager.cpp.i"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/storage/buffer_pool_manager.cpp > CMakeFiles/storage.dir/buffer_pool_manager.cpp.i
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/storage/buffer_pool_manager.cpp > CMakeFiles/storage.dir/buffer_pool_manager.cpp.i
 
 src/storage/CMakeFiles/storage.dir/buffer_pool_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/storage.dir/buffer_pool_manager.cpp.s"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/storage/buffer_pool_manager.cpp -o CMakeFiles/storage.dir/buffer_pool_manager.cpp.s
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/storage/buffer_pool_manager.cpp -o CMakeFiles/storage.dir/buffer_pool_manager.cpp.s
 
 src/storage/CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.o: src/storage/CMakeFiles/storage.dir/flags.make
 src/storage/CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.o: ../src/replacer/lru_replacer.cpp
 src/storage/CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.o: src/storage/CMakeFiles/storage.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanghanghua/src/db2023/db2023/rmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/storage/CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.o"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/storage/CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.o -MF CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.o.d -o CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/replacer/lru_replacer.cpp
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/storage/CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.o -MF CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.o.d -o CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/replacer/lru_replacer.cpp
 
 src/storage/CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.i"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/replacer/lru_replacer.cpp > CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.i
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/replacer/lru_replacer.cpp > CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.i
 
 src/storage/CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.s"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/replacer/lru_replacer.cpp -o CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.s
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/storage && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/replacer/lru_replacer.cpp -o CMakeFiles/storage.dir/__/replacer/lru_replacer.cpp.s
 
 # Object files for target storage
 storage_OBJECTS = \

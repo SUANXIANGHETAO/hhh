@@ -73,15 +73,15 @@ src/system/CMakeFiles/system.dir/sm_manager.cpp.o: src/system/CMakeFiles/system.
 src/system/CMakeFiles/system.dir/sm_manager.cpp.o: ../src/system/sm_manager.cpp
 src/system/CMakeFiles/system.dir/sm_manager.cpp.o: src/system/CMakeFiles/system.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanghanghua/src/db2023/db2023/rmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/system/CMakeFiles/system.dir/sm_manager.cpp.o"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/system && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/system/CMakeFiles/system.dir/sm_manager.cpp.o -MF CMakeFiles/system.dir/sm_manager.cpp.o.d -o CMakeFiles/system.dir/sm_manager.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/system/sm_manager.cpp
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/system && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/system/CMakeFiles/system.dir/sm_manager.cpp.o -MF CMakeFiles/system.dir/sm_manager.cpp.o.d -o CMakeFiles/system.dir/sm_manager.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/system/sm_manager.cpp
 
 src/system/CMakeFiles/system.dir/sm_manager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/system.dir/sm_manager.cpp.i"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/system && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/system/sm_manager.cpp > CMakeFiles/system.dir/sm_manager.cpp.i
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/system && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/system/sm_manager.cpp > CMakeFiles/system.dir/sm_manager.cpp.i
 
 src/system/CMakeFiles/system.dir/sm_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/system.dir/sm_manager.cpp.s"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/system && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/system/sm_manager.cpp -o CMakeFiles/system.dir/sm_manager.cpp.s
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/system && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/system/sm_manager.cpp -o CMakeFiles/system.dir/sm_manager.cpp.s
 
 # Object files for target system
 system_OBJECTS = \

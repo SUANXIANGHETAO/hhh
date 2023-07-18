@@ -65,16 +65,101 @@ class IndexScanExecutor : public AbstractExecutor {
     }
 
     void beginTuple() override {
-        
+        check_runtime_conds();
+
+    // 获取索引句柄
+    auto ih = sm_manager_->get_ix_manager()->open_index(tab_name_, index_col_names_);
+
+    // 根据扫描条件设置索引扫描的起始和结束位置
+    Iid lower = ih->leaf_begin();
+    Iid upper = ih->leaf_end();
+    for (const auto& cond : fed_conds_) {
+        if (cond.is_rhs_val && cond.lhs_col.col_name == index_col_names_.at(0)) {
+            auto rhs_key = cond.rhs_val.raw->data;
+            if (cond.op == OP_EQ) {
+                lower = ih->lower_bound(rhs_key);
+                upper = ih->upper_bound(rhs_key);
+            } else if (cond.op == OP_LT) {
+                upper = ih->lower_bound(rhs_key);
+            } else if (cond.op == OP_LE) {
+                upper = ih->upper_bound(rhs_key);
+            } else if (cond.op == OP_GT) {
+                lower = ih->upper_bound(rhs_key);
+            } else if (cond.op == OP_GE) {
+                lower = ih->lower_bound(rhs_key);
+            } else {
+                throw InternalError("Unexpected op type");
+            }
+        }
+    }
+
+    // 使用索引的起始和结束位置创建索引扫描器
+    // scan_ = std::make_unique<RecScan>(ih, lower, upper);
+    // rid_ = Rid();
     }
 
     void nextTuple() override {
-        
+        check_runtime_conds();
+    assert(!is_end());
+    for (scan_->next(); !scan_->is_end(); scan_->next()) {
+        std::unique_ptr<RmRecord> record = fh_->get_record(rid_,context_);//尝试验证记录
+        if (eval_conds(cols_, conds_, record.get())) {
+            rid_ = scan_->rid();
+            return;
+        }
+    }
+    rid_ = {0,0};
     }
 
     std::unique_ptr<RmRecord> Next() override {
-        return nullptr;
+        assert(!is_end());
+        return fh_->get_record(rid_, context_);
     }
 
     Rid &rid() override { return rid_; }
+ bool eval_cond(const std::vector<ColMeta> &rec_cols, const Condition &cond, const RmRecord *rec) {
+        auto lhs_col = get_col(rec_cols, cond.lhs_col);
+        char *lhs = rec->data + lhs_col->offset;
+        char *rhs;
+        ColType rhs_type;
+        if (cond.is_rhs_val) {
+            rhs_type = cond.rhs_val.type;
+            rhs = cond.rhs_val.raw->data;
+        } else {
+            // rhs is a column
+            auto rhs_col = get_col(rec_cols, cond.rhs_col);
+            rhs_type = rhs_col->type;
+            rhs = rec->data + rhs_col->offset;
+        }
+        assert(rhs_type == lhs_col->type);  // TODO convert to common type
+        int cmp = ix_compare(lhs, rhs, rhs_type, lhs_col->len);
+        if (cond.op == OP_EQ) {
+            return cmp == 0;
+        } else if (cond.op == OP_NE) {
+            return cmp != 0;
+        } else if (cond.op == OP_LT) {
+            return cmp < 0;
+        } else if (cond.op == OP_GT) {
+            return cmp > 0;
+        } else if (cond.op == OP_LE) {
+            return cmp <= 0;
+        } else if (cond.op == OP_GE) {
+            return cmp >= 0;
+        } else {
+            throw InternalError("Unexpected op type");
+        }
+    }
+
+    bool eval_conds(const std::vector<ColMeta> &rec_cols, const std::vector<Condition> &conds, const RmRecord *rec) {
+        return std::all_of(conds.begin(), conds.end(),
+                           [&](const Condition &cond) { return eval_cond(rec_cols, cond, rec); });
+    }
+    void check_runtime_conds() {
+        for (auto &cond : fed_conds_) {
+            assert(cond.lhs_col.tab_name == tab_name_);
+            if (!cond.is_rhs_val) {
+                assert(cond.rhs_col.tab_name == tab_name_);
+            }
+        }
+    }
 };

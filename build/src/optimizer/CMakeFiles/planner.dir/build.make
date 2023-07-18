@@ -73,15 +73,15 @@ src/optimizer/CMakeFiles/planner.dir/planner.cpp.o: src/optimizer/CMakeFiles/pla
 src/optimizer/CMakeFiles/planner.dir/planner.cpp.o: ../src/optimizer/planner.cpp
 src/optimizer/CMakeFiles/planner.dir/planner.cpp.o: src/optimizer/CMakeFiles/planner.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanghanghua/src/db2023/db2023/rmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/optimizer/CMakeFiles/planner.dir/planner.cpp.o"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/optimizer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/optimizer/CMakeFiles/planner.dir/planner.cpp.o -MF CMakeFiles/planner.dir/planner.cpp.o.d -o CMakeFiles/planner.dir/planner.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/optimizer/planner.cpp
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/optimizer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/optimizer/CMakeFiles/planner.dir/planner.cpp.o -MF CMakeFiles/planner.dir/planner.cpp.o.d -o CMakeFiles/planner.dir/planner.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/optimizer/planner.cpp
 
 src/optimizer/CMakeFiles/planner.dir/planner.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/planner.dir/planner.cpp.i"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/optimizer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/optimizer/planner.cpp > CMakeFiles/planner.dir/planner.cpp.i
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/optimizer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/optimizer/planner.cpp > CMakeFiles/planner.dir/planner.cpp.i
 
 src/optimizer/CMakeFiles/planner.dir/planner.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/planner.dir/planner.cpp.s"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/optimizer && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/optimizer/planner.cpp -o CMakeFiles/planner.dir/planner.cpp.s
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/optimizer && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/optimizer/planner.cpp -o CMakeFiles/planner.dir/planner.cpp.s
 
 # Object files for target planner
 planner_OBJECTS = \

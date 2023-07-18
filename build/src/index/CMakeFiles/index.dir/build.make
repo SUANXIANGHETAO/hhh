@@ -73,29 +73,29 @@ src/index/CMakeFiles/index.dir/ix_index_handle.cpp.o: src/index/CMakeFiles/index
 src/index/CMakeFiles/index.dir/ix_index_handle.cpp.o: ../src/index/ix_index_handle.cpp
 src/index/CMakeFiles/index.dir/ix_index_handle.cpp.o: src/index/CMakeFiles/index.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanghanghua/src/db2023/db2023/rmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/index/CMakeFiles/index.dir/ix_index_handle.cpp.o"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/index && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/index/CMakeFiles/index.dir/ix_index_handle.cpp.o -MF CMakeFiles/index.dir/ix_index_handle.cpp.o.d -o CMakeFiles/index.dir/ix_index_handle.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/index/ix_index_handle.cpp
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/index && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/index/CMakeFiles/index.dir/ix_index_handle.cpp.o -MF CMakeFiles/index.dir/ix_index_handle.cpp.o.d -o CMakeFiles/index.dir/ix_index_handle.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/index/ix_index_handle.cpp
 
 src/index/CMakeFiles/index.dir/ix_index_handle.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/index.dir/ix_index_handle.cpp.i"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/index && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/index/ix_index_handle.cpp > CMakeFiles/index.dir/ix_index_handle.cpp.i
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/index && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/index/ix_index_handle.cpp > CMakeFiles/index.dir/ix_index_handle.cpp.i
 
 src/index/CMakeFiles/index.dir/ix_index_handle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/index.dir/ix_index_handle.cpp.s"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/index && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/index/ix_index_handle.cpp -o CMakeFiles/index.dir/ix_index_handle.cpp.s
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/index && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/index/ix_index_handle.cpp -o CMakeFiles/index.dir/ix_index_handle.cpp.s
 
 src/index/CMakeFiles/index.dir/ix_scan.cpp.o: src/index/CMakeFiles/index.dir/flags.make
 src/index/CMakeFiles/index.dir/ix_scan.cpp.o: ../src/index/ix_scan.cpp
 src/index/CMakeFiles/index.dir/ix_scan.cpp.o: src/index/CMakeFiles/index.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanghanghua/src/db2023/db2023/rmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/index/CMakeFiles/index.dir/ix_scan.cpp.o"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/index && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/index/CMakeFiles/index.dir/ix_scan.cpp.o -MF CMakeFiles/index.dir/ix_scan.cpp.o.d -o CMakeFiles/index.dir/ix_scan.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/index/ix_scan.cpp
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/index && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/index/CMakeFiles/index.dir/ix_scan.cpp.o -MF CMakeFiles/index.dir/ix_scan.cpp.o.d -o CMakeFiles/index.dir/ix_scan.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/index/ix_scan.cpp
 
 src/index/CMakeFiles/index.dir/ix_scan.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/index.dir/ix_scan.cpp.i"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/index && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/index/ix_scan.cpp > CMakeFiles/index.dir/ix_scan.cpp.i
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/index && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/index/ix_scan.cpp > CMakeFiles/index.dir/ix_scan.cpp.i
 
 src/index/CMakeFiles/index.dir/ix_scan.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/index.dir/ix_scan.cpp.s"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/index && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/index/ix_scan.cpp -o CMakeFiles/index.dir/ix_scan.cpp.s
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/index && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/index/ix_scan.cpp -o CMakeFiles/index.dir/ix_scan.cpp.s
 
 # Object files for target index
 index_OBJECTS = \

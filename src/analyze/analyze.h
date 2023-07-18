@@ -36,7 +36,16 @@ class Query{
     std::vector<Value> values;
 
     Query(){}
+    bool check_table_existence(const std::string& table_name) {
+    // 检查表名是否存在于 table_list 中
+    for (const auto& name : tables) {
+        if (name == table_name) {
+            return true;
+        }
+    }
 
+    return false;
+}
 };
 
 class Analyze
@@ -46,7 +55,7 @@ private:
 public:
     Analyze(SmManager *sm_manager) : sm_manager_(sm_manager){}
     ~Analyze(){}
-
+  
     std::shared_ptr<Query> do_analyze(std::shared_ptr<ast::TreeNode> root);
 
 private:

@@ -37,6 +37,42 @@ class DeleteExecutor : public AbstractExecutor {
     }
 
     std::unique_ptr<RmRecord> Next() override {
+         // Get all index files
+        std::vector<IxIndexHandle *> ihs(tab_.cols.size(), nullptr);
+        for (size_t col_i = 0; col_i < tab_.cols.size(); col_i++) {
+            if (tab_.cols[col_i].index) {
+                // lab3 task3 Todo
+                // 获取需要的索引句柄,填充vector ihs
+                ihs[col_i] = sm_manager_->ihs_.at(tab_name_ + "." + tab_.cols[col_i].name).get();
+                // lab3 task3 Todo end
+            }
+        }
+
+      
+
+        // Delete each rid from record file and index file
+        for (auto &rid : rids_) {
+            auto rec = fh_->get_record(rid, context_);
+            // lab3 task3 Todo
+
+        //      Delete from index file
+
+        //      for (size_t col_i = 0; col_i < tab_.cols.size(); col_i++) {
+        //     if (ihs[col_i] != nullptr) {
+        //         auto col = tab_.cols[col_i];
+        //         std::string col_value(rec->data + col.offset, col.len);
+        //         //ihs[col_i]->delete_entry(col_value.c_str(), );
+        //     }
+        // }
+
+            // Delete from record file
+            // lab3 task3 Todo end
+            fh_->delete_record(rid, context_);
+            // record a delete operation into the transaction
+
+            RmRecord delete_record{rec->size};
+            memcpy(delete_record.data, rec->data, rec->size);
+        }
         return nullptr;
     }
 

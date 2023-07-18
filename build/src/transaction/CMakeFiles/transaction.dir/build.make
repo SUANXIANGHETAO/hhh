@@ -73,29 +73,29 @@ src/transaction/CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.o: src/t
 src/transaction/CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.o: ../src/transaction/concurrency/lock_manager.cpp
 src/transaction/CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.o: src/transaction/CMakeFiles/transaction.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanghanghua/src/db2023/db2023/rmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/transaction/CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.o"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/transaction && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/transaction/CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.o -MF CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.o.d -o CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/transaction/concurrency/lock_manager.cpp
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/transaction && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/transaction/CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.o -MF CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.o.d -o CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/transaction/concurrency/lock_manager.cpp
 
 src/transaction/CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.i"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/transaction && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/transaction/concurrency/lock_manager.cpp > CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.i
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/transaction && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/transaction/concurrency/lock_manager.cpp > CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.i
 
 src/transaction/CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.s"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/transaction && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/transaction/concurrency/lock_manager.cpp -o CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.s
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/transaction && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/transaction/concurrency/lock_manager.cpp -o CMakeFiles/transaction.dir/concurrency/lock_manager.cpp.s
 
 src/transaction/CMakeFiles/transaction.dir/transaction_manager.cpp.o: src/transaction/CMakeFiles/transaction.dir/flags.make
 src/transaction/CMakeFiles/transaction.dir/transaction_manager.cpp.o: ../src/transaction/transaction_manager.cpp
 src/transaction/CMakeFiles/transaction.dir/transaction_manager.cpp.o: src/transaction/CMakeFiles/transaction.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanghanghua/src/db2023/db2023/rmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/transaction/CMakeFiles/transaction.dir/transaction_manager.cpp.o"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/transaction && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/transaction/CMakeFiles/transaction.dir/transaction_manager.cpp.o -MF CMakeFiles/transaction.dir/transaction_manager.cpp.o.d -o CMakeFiles/transaction.dir/transaction_manager.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/transaction/transaction_manager.cpp
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/transaction && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/transaction/CMakeFiles/transaction.dir/transaction_manager.cpp.o -MF CMakeFiles/transaction.dir/transaction_manager.cpp.o.d -o CMakeFiles/transaction.dir/transaction_manager.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/transaction/transaction_manager.cpp
 
 src/transaction/CMakeFiles/transaction.dir/transaction_manager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/transaction.dir/transaction_manager.cpp.i"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/transaction && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/transaction/transaction_manager.cpp > CMakeFiles/transaction.dir/transaction_manager.cpp.i
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/transaction && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/transaction/transaction_manager.cpp > CMakeFiles/transaction.dir/transaction_manager.cpp.i
 
 src/transaction/CMakeFiles/transaction.dir/transaction_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/transaction.dir/transaction_manager.cpp.s"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/transaction && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/transaction/transaction_manager.cpp -o CMakeFiles/transaction.dir/transaction_manager.cpp.s
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/transaction && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/transaction/transaction_manager.cpp -o CMakeFiles/transaction.dir/transaction_manager.cpp.s
 
 # Object files for target transaction
 transaction_OBJECTS = \

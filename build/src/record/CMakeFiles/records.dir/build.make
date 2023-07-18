@@ -73,29 +73,29 @@ src/record/CMakeFiles/records.dir/rm_file_handle.cpp.o: src/record/CMakeFiles/re
 src/record/CMakeFiles/records.dir/rm_file_handle.cpp.o: ../src/record/rm_file_handle.cpp
 src/record/CMakeFiles/records.dir/rm_file_handle.cpp.o: src/record/CMakeFiles/records.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanghanghua/src/db2023/db2023/rmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/record/CMakeFiles/records.dir/rm_file_handle.cpp.o"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/record && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/record/CMakeFiles/records.dir/rm_file_handle.cpp.o -MF CMakeFiles/records.dir/rm_file_handle.cpp.o.d -o CMakeFiles/records.dir/rm_file_handle.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/record/rm_file_handle.cpp
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/record && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/record/CMakeFiles/records.dir/rm_file_handle.cpp.o -MF CMakeFiles/records.dir/rm_file_handle.cpp.o.d -o CMakeFiles/records.dir/rm_file_handle.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/record/rm_file_handle.cpp
 
 src/record/CMakeFiles/records.dir/rm_file_handle.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/records.dir/rm_file_handle.cpp.i"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/record && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/record/rm_file_handle.cpp > CMakeFiles/records.dir/rm_file_handle.cpp.i
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/record && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/record/rm_file_handle.cpp > CMakeFiles/records.dir/rm_file_handle.cpp.i
 
 src/record/CMakeFiles/records.dir/rm_file_handle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/records.dir/rm_file_handle.cpp.s"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/record && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/record/rm_file_handle.cpp -o CMakeFiles/records.dir/rm_file_handle.cpp.s
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/record && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/record/rm_file_handle.cpp -o CMakeFiles/records.dir/rm_file_handle.cpp.s
 
 src/record/CMakeFiles/records.dir/rm_scan.cpp.o: src/record/CMakeFiles/records.dir/flags.make
 src/record/CMakeFiles/records.dir/rm_scan.cpp.o: ../src/record/rm_scan.cpp
 src/record/CMakeFiles/records.dir/rm_scan.cpp.o: src/record/CMakeFiles/records.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanghanghua/src/db2023/db2023/rmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/record/CMakeFiles/records.dir/rm_scan.cpp.o"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/record && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/record/CMakeFiles/records.dir/rm_scan.cpp.o -MF CMakeFiles/records.dir/rm_scan.cpp.o.d -o CMakeFiles/records.dir/rm_scan.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/record/rm_scan.cpp
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/record && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/record/CMakeFiles/records.dir/rm_scan.cpp.o -MF CMakeFiles/records.dir/rm_scan.cpp.o.d -o CMakeFiles/records.dir/rm_scan.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/record/rm_scan.cpp
 
 src/record/CMakeFiles/records.dir/rm_scan.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/records.dir/rm_scan.cpp.i"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/record && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/record/rm_scan.cpp > CMakeFiles/records.dir/rm_scan.cpp.i
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/record && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/record/rm_scan.cpp > CMakeFiles/records.dir/rm_scan.cpp.i
 
 src/record/CMakeFiles/records.dir/rm_scan.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/records.dir/rm_scan.cpp.s"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/record && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/record/rm_scan.cpp -o CMakeFiles/records.dir/rm_scan.cpp.s
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/record && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/record/rm_scan.cpp -o CMakeFiles/records.dir/rm_scan.cpp.s
 
 # Object files for target records
 records_OBJECTS = \

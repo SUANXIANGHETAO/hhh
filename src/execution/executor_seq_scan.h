@@ -46,16 +46,109 @@ class SeqScanExecutor : public AbstractExecutor {
     }
 
     void beginTuple() override {
-        
+        check_runtime_conds();
+
+        scan_ = std::make_unique<RmScan>(fh_);
+
+        // 得到第一个满足fed_conds_条件的record,并把其rid赋给算子成员rid_
+        while (!scan_->is_end()) {
+            rid_ = scan_->rid();
+            try {
+                auto rec = fh_->get_record(rid_, context_);  // TableHeap->GetTuple() 当前扫描到的记录
+                // lab3 task2 todo
+                // 利用eval_conds判断是否当前记录(rec.get())满足谓词条件
+                // 满足则中止循环
+                // lab3 task2 todo end
+            } catch (RecordNotFoundError &e) {
+                std::cerr << e.what() << std::endl;
+            }
+
+            scan_->next();  // 找下一个有record的位置
+        }
     }
 
     void nextTuple() override {
-        
+        check_runtime_conds();
+    assert(!is_end());
+    for (scan_->next(); !scan_->is_end(); scan_->next()) {
+        // 获取当前记录
+        std::unique_ptr<RmRecord> record = fh_->get_record(rid_,context_);
+        if (record->allocated_ != 0) {
+            continue;
+        }
+
+        // 判断是否满足谓词条件
+        if (eval_conds(cols_, conds_, record.get())) {
+            rid_ = scan_->rid();
+            return;
+        }
+    }
+    rid_ = {NULL,NULL};
     }
 
     std::unique_ptr<RmRecord> Next() override {
-        return nullptr;
+        // 读取下一条记录的数据
+        std::unique_ptr<RmRecord> record = fh_->get_record(scan_->rid(),context_);
+
+        // if (record != nullptr) {
+        //     // 检查记录是否满足条件
+        //     while (!conds_.empty() && !conds_.front().satisfy(record.get())) {
+        //         record = fh_->get_record(scan_->rid(),context_);
+        //         rid_ = scan_->rid();
+        //     }
+        // }
+
+        return record;
     }
 
-    Rid &rid() override { return rid_; }
+    Rid& rid() override { return rid_; }
+
+    //
+    void check_runtime_conds() {
+        for (auto &cond : fed_conds_) {
+            assert(cond.lhs_col.tab_name == tab_name_);
+            if (!cond.is_rhs_val) {
+                assert(cond.rhs_col.tab_name == tab_name_);
+            }
+        }
+    }
+    //
+     bool eval_cond(const std::vector<ColMeta> &rec_cols, const Condition &cond, const RmRecord *rec) {
+        auto lhs_col = get_col(rec_cols, cond.lhs_col);
+        char *lhs = rec->data + lhs_col->offset;
+        char *rhs;
+        ColType rhs_type;
+        if (cond.is_rhs_val) {
+            rhs_type = cond.rhs_val.type;
+            rhs = cond.rhs_val.raw->data;
+        } else {
+            // rhs is a column
+            auto rhs_col = get_col(rec_cols, cond.rhs_col);
+            rhs_type = rhs_col->type;
+            rhs = rec->data + rhs_col->offset;
+        }
+        assert(rhs_type == lhs_col->type);  // TODO convert to common type
+        int cmp = ix_compare(lhs, rhs, rhs_type, lhs_col->len);
+        if (cond.op == OP_EQ) {
+            return cmp == 0;
+        } else if (cond.op == OP_NE) {
+            return cmp != 0;
+        } else if (cond.op == OP_LT) {
+            return cmp < 0;
+        } else if (cond.op == OP_GT) {
+            return cmp > 0;
+        } else if (cond.op == OP_LE) {
+            return cmp <= 0;
+        } else if (cond.op == OP_GE) {
+            return cmp >= 0;
+        } else {
+            throw InternalError("Unexpected op type");
+        }
+    }
+//
+    bool eval_conds(const std::vector<ColMeta> &rec_cols, const std::vector<Condition> &conds, const RmRecord *rec) {
+        return std::all_of(conds.begin(), conds.end(),
+                           [&](const Condition &cond) { return eval_cond(rec_cols, cond, rec); });
+    }
+
 };

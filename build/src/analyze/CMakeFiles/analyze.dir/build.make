@@ -73,15 +73,15 @@ src/analyze/CMakeFiles/analyze.dir/analyze.cpp.o: src/analyze/CMakeFiles/analyze
 src/analyze/CMakeFiles/analyze.dir/analyze.cpp.o: ../src/analyze/analyze.cpp
 src/analyze/CMakeFiles/analyze.dir/analyze.cpp.o: src/analyze/CMakeFiles/analyze.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanghanghua/src/db2023/db2023/rmdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/analyze/CMakeFiles/analyze.dir/analyze.cpp.o"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/analyze && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/analyze/CMakeFiles/analyze.dir/analyze.cpp.o -MF CMakeFiles/analyze.dir/analyze.cpp.o.d -o CMakeFiles/analyze.dir/analyze.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/analyze/analyze.cpp
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/analyze && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/analyze/CMakeFiles/analyze.dir/analyze.cpp.o -MF CMakeFiles/analyze.dir/analyze.cpp.o.d -o CMakeFiles/analyze.dir/analyze.cpp.o -c /home/huanghanghua/src/db2023/db2023/rmdb/src/analyze/analyze.cpp
 
 src/analyze/CMakeFiles/analyze.dir/analyze.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/analyze.dir/analyze.cpp.i"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/analyze && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/analyze/analyze.cpp > CMakeFiles/analyze.dir/analyze.cpp.i
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/analyze && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanghanghua/src/db2023/db2023/rmdb/src/analyze/analyze.cpp > CMakeFiles/analyze.dir/analyze.cpp.i
 
 src/analyze/CMakeFiles/analyze.dir/analyze.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/analyze.dir/analyze.cpp.s"
-	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/analyze && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/analyze/analyze.cpp -o CMakeFiles/analyze.dir/analyze.cpp.s
+	cd /home/huanghanghua/src/db2023/db2023/rmdb/build/src/analyze && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanghanghua/src/db2023/db2023/rmdb/src/analyze/analyze.cpp -o CMakeFiles/analyze.dir/analyze.cpp.s
 
 # Object files for target analyze
 analyze_OBJECTS = \
