@@ -10,7 +10,7 @@
             "name": "Debug",
             "program": "${workspaceFolder}/build/bin/rmdb",
             "args": ["basic_test1"],
-            "cwd": "${workspaceFolder}"
+            "cwd": "${workspaceFolder}/build"
         }
     ]
 }
