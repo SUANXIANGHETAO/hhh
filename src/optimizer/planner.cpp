@@ -280,7 +280,7 @@ std::shared_ptr<Plan> Planner::generate_sort_plan(std::shared_ptr<Query> query, 
  */
 std::shared_ptr<Plan> Planner::generate_select_plan(std::shared_ptr<Query> query, Context *context) {
     //逻辑优化
-    query = logical_optimization(std::move(query), context);
+    //query = logical_optimization(std::move(query), context);
 
     //物理优化
     auto sel_cols = query->cols;
@@ -363,7 +363,10 @@ std::shared_ptr<Plan> Planner::do_planner(std::shared_ptr<Query> query, Context 
                                                      std::vector<Value>(), query->conds, 
                                                      query->set_clauses);
     } else if (auto x = std::dynamic_pointer_cast<ast::SelectStmt>(query->parse)) {
-
+                    std::fstream outfile;
+                    outfile.open("output.txt",std::ios::out | std::ios::app);
+                    outfile << "p1\n";
+                    outfile.close();
         std::shared_ptr<plannerInfo> root = std::make_shared<plannerInfo>(x);
         // 生成select语句的查询执行计划
         std::shared_ptr<Plan> projection = generate_select_plan(std::move(query), context);

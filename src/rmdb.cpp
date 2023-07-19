@@ -69,7 +69,6 @@ void sigint_handler(int signo) {
 void *client_handler(void *sock_fd) {
     int fd = *((int *)sock_fd);
     pthread_mutex_unlock(sockfd_mutex);
-
     int i_recvBytes;
     // 接收客户端发送的请求
     char data_recv[BUFFER_LENGTH];
@@ -79,7 +78,7 @@ void *client_handler(void *sock_fd) {
     int offset = 0;
     // 记录客户端当前正在执行的事务ID
     txn_id_t txn_id = INVALID_TXN_ID;
-
+    
     std::string output = "establish client connection, sockfd: " + std::to_string(fd) + "\n";
     std::cout << output;
 
@@ -131,11 +130,26 @@ void *client_handler(void *sock_fd) {
                     finish_analyze = true;
                     pthread_mutex_unlock(buffer_mutex);
                     // 优化器
+                    // std::fstream outfile;
+                    // outfile.open("output.txt",std::ios::out | std::ios::app);
+                    // outfile << "r1\n";
+                    // outfile.close();
                     std::shared_ptr<Plan> plan = optimizer->plan_query(query, context);
                     // portal
+                    //std::fstream outfile;
+                    // outfile.open("output.txt",std::ios::out | std::ios::app);
+                    // outfile << "r2\n";
+                    // outfile.close();
                     std::shared_ptr<PortalStmt> portalStmt = portal->start(plan, context);
+                    // outfile.open("output.txt",std::ios::out | std::ios::app);
+                    // outfile << "r21\n";
+                    // outfile.close();
                     portal->run(portalStmt, ql_manager.get(), &txn_id, context);
+                    // outfile.open("output.txt",std::ios::out | std::ios::app);
+                    // outfile << "r22\n";
+                    // outfile.close();
                     portal->drop();
+                    
                 } catch (TransactionAbortException &e) {
                     // 事务需要回滚，需要把abort信息返回给客户端并写入output.txt文件中
                     std::string str = "abort\n";
@@ -168,15 +182,27 @@ void *client_handler(void *sock_fd) {
                 }
             }
         }
+        std::fstream outfile;
+                    // outfile.open("output.txt",std::ios::out | std::ios::app);
+                    // outfile << "r3\n";
+                    // outfile.close();
         if(finish_analyze == false) {
             yy_delete_buffer(buf);
             pthread_mutex_unlock(buffer_mutex);
         }
+        //std::fstream outfile;
+                    // outfile.open("output.txt",std::ios::out | std::ios::app);
+                    // outfile << "r4\n";
+                    // outfile.close();
         // future TODO: 格式化 sql_handler.result, 传给客户端
         // send result with fixed format, use protobuf in the future
         if (write(fd, data_send, offset + 1) == -1) {
             break;
         }
+            //std::fstream outfile;
+                    // outfile.open("output.txt",std::ios::out | std::ios::app);
+                    // outfile << "r5\n";
+                    // outfile.close();
         // 如果是单挑语句，需要按照一个完整的事务来执行，所以执行完当前语句后，自动提交事务
         // if(context->txn_->get_txn_mode() == false)
         // {

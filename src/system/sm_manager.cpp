@@ -86,30 +86,32 @@ void SmManager::drop_db(const std::string& db_name) {
  */
 void SmManager::open_db(const std::string& db_name) {
 
-    // 检查数据库文件夹是否存在
     if (!is_dir(db_name)) {
         throw DatabaseNotFoundError(db_name);
     }
-
-    // 进入数据库文件夹
+    // cd to database dir
     if (chdir(db_name.c_str()) < 0) {
         throw UnixError();
     }
-
-    // 加载数据库元数据
-  
-    DbMeta db_meta;
+    // Load meta
+    // 打开一个名为DB_META_NAME的文件
     std::ifstream ifs(DB_META_NAME);
-    ifs >> db_meta;
-
-
-
-    // 加载其他相关文件
-    //load_log_file();
-
-    // 回到根目录
-    if (chdir("..") < 0) {
-        throw UnixError();
+    // 将ofs打开的DB_META_NAME文件中的信息，按照定义好的operator>>操作符，读出到db_中
+    ifs >> db_;  // 注意：此处重载了操作符>>
+    // Open all record files & index files
+    for (auto &entry : db_.tabs_) {
+        auto &tab = entry.second;
+        // fhs_[tab.name] = rm_manager_->open_file(tab.name);
+        fhs_.emplace(tab.name, rm_manager_->open_file(tab.name));
+        // for (size_t i = 0; i < tab.cols.size(); i++) {
+        //     auto &col = tab.cols[i];
+        //     if (col.index) {
+        //         auto index_name = ix_manager_->get_index_name(tab.name, i);
+        //         assert(ihs_.count(index_name) == 0);
+        //         // ihs_[index_name] = ix_manager_->open_index(tab.name, i);
+        //         ihs_.emplace(index_name, ix_manager_->open_index(tab.name, i));
+        //     }
+        // }
     }
 }
 
@@ -194,7 +196,10 @@ void SmManager::desc_table(const std::string& tab_name, Context* context) {
  */
 void SmManager::create_table(const std::string& tab_name, const std::vector<ColDef>& col_defs, Context* context) {
     if (db_.is_table(tab_name)) {
-        std::cout<<"failure"<<std::endl;
+        std::fstream outfile;
+                    outfile.open("output.txt",std::ios::out | std::ios::app);
+                    outfile << "failure\n";
+                    outfile.close();
         throw TableExistsError(tab_name);
     }
     // Create table meta
@@ -217,7 +222,10 @@ void SmManager::create_table(const std::string& tab_name, const std::vector<ColD
     db_.tabs_[tab_name] = tab;
     // fhs_[tab_name] = rm_manager_->open_file(tab_name);
     fhs_.emplace(tab_name, rm_manager_->open_file(tab_name));
-
+    //  std::fstream outfile;
+    //                 outfile.open("output.txt",std::ios::out | std::ios::app);
+    //                 outfile << "| "<<tab_name<<" |\n";
+    //                 outfile.close();
     flush_meta();
 }
 
@@ -228,20 +236,44 @@ void SmManager::create_table(const std::string& tab_name, const std::vector<ColD
  */
 void SmManager::drop_table(const std::string& tab_name, Context* context) {
      if (!db_.is_table(tab_name)) {
-        std::cout<<"failure"<<std::endl;
+        // std::cout<<"failure"<<std::endl;
+         std::fstream outfile;
+                    outfile.open("output.txt",std::ios::out | std::ios::app);
+                    outfile << "failure\n";
+                    outfile.close();
         throw TableNotFoundError(tab_name);
     }
     
     // 关闭并删除文件句柄
-    fhs_.erase(tab_name);
+    
     
     rm_manager_->close_file(fhs_[tab_name].get());
     rm_manager_->destroy_file(tab_name);
-
+    fhs_.erase(tab_name);
     // 从数据库中删除表元数据
     db_.tabs_.erase(tab_name);
-
+    
     flush_meta();
+
+      // 删除"output.txt"文件中的内容
+    std::ifstream input_file("output.txt");
+    std::ofstream temp_file("temp.txt");
+
+    std::string line;
+    while (std::getline(input_file, line)) {
+        std::string search_str = "| " + tab_name + " |";
+        if (line.find(search_str) == std::string::npos) {
+            temp_file << line << "\n";
+        }
+    }
+
+    input_file.close();
+    temp_file.close();
+
+    // 用临时文件替换原文件
+    std::remove("output.txt");
+    std::rename("temp.txt", "output.txt");
+
 }
 
 /**

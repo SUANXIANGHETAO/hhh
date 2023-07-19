@@ -67,8 +67,18 @@ class Portal
             switch(x->tag) {
                 case T_select:
                 {
+                       std::fstream outfile;
+                    outfile.open("output.txt",std::ios::out | std::ios::app);
+                    outfile << "po1\n";
+                    outfile.close();
                     std::shared_ptr<ProjectionPlan> p = std::dynamic_pointer_cast<ProjectionPlan>(x->subplan_);
+                    outfile.open("output.txt",std::ios::out | std::ios::app);
+                    outfile << "po2\n";
+                    outfile.close();
                     std::unique_ptr<AbstractExecutor> root= convert_plan_executor(p, context);
+                    outfile.open("output.txt",std::ios::out | std::ios::app);
+                    outfile << "po3\n";
+                    outfile.close();
                     return std::make_shared<PortalStmt>(PORTAL_ONE_SELECT, std::move(p->sel_cols_), std::move(root), plan);
                 }
                     
@@ -154,6 +164,7 @@ class Portal
     std::unique_ptr<AbstractExecutor> convert_plan_executor(std::shared_ptr<Plan> plan, Context *context)
     {
         if(auto x = std::dynamic_pointer_cast<ProjectionPlan>(plan)){
+                                             
             return std::make_unique<ProjectionExecutor>(convert_plan_executor(x->subplan_, context), 
                                                         x->sel_cols_);
         } else if(auto x = std::dynamic_pointer_cast<ScanPlan>(plan)) {
@@ -174,6 +185,8 @@ class Portal
             return std::make_unique<SortExecutor>(convert_plan_executor(x->subplan_, context), 
                                             x->sel_col_, x->is_desc_);
         }
+         std::fstream outfile;
+                   
         return nullptr;
     }
 

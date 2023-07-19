@@ -23,14 +23,29 @@ std::shared_ptr<Query> Analyze::do_analyze(std::shared_ptr<ast::TreeNode> parse)
         // 处理表名
         query->tables = std::move(x->tabs);
         /** TODO: 检查表是否存在 */
-
+        for(auto y:x->tabs)
+        {
+    if(sm_manager_->fhs_.find(y)==sm_manager_->fhs_.end())
+        {
+            std::fstream outfile;
+                    outfile.open("output.txt",std::ios::out | std::ios::app);
+                    outfile << "failure\n";
+                    outfile.close();
+            throw TableNotFoundError(y);
+        }
+        }
         // 处理target list，再target list中添加上表名，例如 a.id
         for (auto &sv_sel_col : x->cols) {
             TabCol sel_col = {.tab_name = sv_sel_col->tab_name, .col_name = sv_sel_col->col_name};
             query->cols.push_back(sel_col);
         }
-        
+
+        // std::fstream outfile;
+        //             outfile.open("output.txt",std::ios::out | std::ios::app);
+        //             outfile << "ka\n";
+        //             outfile.close();
         std::vector<ColMeta> all_cols;
+
         get_all_cols(query->tables, all_cols);
         if (query->cols.empty()) {
             // select all columns
@@ -44,23 +59,68 @@ std::shared_ptr<Query> Analyze::do_analyze(std::shared_ptr<ast::TreeNode> parse)
                 sel_col = check_column(all_cols, sel_col);  // 列元数据校验
             }
         }
+
         //处理where条件
         get_clause(x->conds, query->conds);
         check_clause(query->tables, query->conds);
+            // outfile.open("output.txt",std::ios::out | std::ios::app);
+            //         outfile << "ka1\n";
+            //         outfile.close();
     } else if (auto x = std::dynamic_pointer_cast<ast::UpdateStmt>(parse)) {
         /** TODO: */
+        query->tables = {x->tab_name};
+    /*检查表是否存在 */
+        // std::fstream outfile;
+        // outfile.open("output.txt",std::ios::out | std::ios::app);
+        //             outfile << "k2\n";
+        //             outfile.close();
+        if(sm_manager_->fhs_.find(x->tab_name)==sm_manager_->fhs_.end())
+        {
+            std::fstream outfile;
+                    outfile.open("output.txt",std::ios::out | std::ios::app);
+                    outfile << "failure\n";
+                    outfile.close();
+            throw TableNotFoundError(x->tab_name);
+        }
+    // 添加上表名
+     
+    for (auto& sv_set_col : x->set_clauses) {
+        TabCol set_col;
+        set_col.tab_name = x->tab_name;
+        set_col.col_name = sv_set_col->col_name; 
+        SetClause s1;
+        s1.lhs = set_col;
+        s1.rhs = convert_sv_value(sv_set_col->val);
+        query->set_clauses.emplace_back(s1);
+    }
+  
+    //处理where条件
+    get_clause(x->conds, query->conds);
+    check_clause(query->tables, query->conds);
 
     } else if (auto x = std::dynamic_pointer_cast<ast::DeleteStmt>(parse)) {
         //处理where条件
+          std::fstream outfile;
+        // outfile.open("output.txt",std::ios::out | std::ios::app);
+        //             outfile << "k4\n";
+        //             outfile.close();
         get_clause(x->conds, query->conds);
         check_clause({x->tab_name}, query->conds);        
     } else if (auto x = std::dynamic_pointer_cast<ast::InsertStmt>(parse)) {
         // 处理insert 的values值
+        // std::fstream outfile;
+        // outfile.open("output.txt",std::ios::out | std::ios::app);
+        //             outfile << "k3\n";
+        //             outfile.close();
         for (auto &sv_val : x->vals) {
             query->values.push_back(convert_sv_value(sv_val));
         }
     } else {
         // do nothing
+        //  std::fstream outfile;
+        // outfile.open("output.txt",std::ios::out | std::ios::app);
+        //             outfile << "k5\n";
+        //             outfile.close();
     }
     query->parse = std::move(parse);
     return query;
@@ -85,7 +145,10 @@ TabCol Analyze::check_column(const std::vector<ColMeta> &all_cols, TabCol target
         target.tab_name = tab_name;
     } else {
         /** TODO: Make sure target column exists */
-        
+        //  std::fstream outfile;
+        // outfile.open("output.txt",std::ios::out | std::ios::app);
+        //             outfile << "k7\n";
+        //             outfile.close();
     }
     return target;
 }

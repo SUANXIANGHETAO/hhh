@@ -135,12 +135,19 @@ void QlManager::select_from(std::unique_ptr<AbstractExecutor> executorTreeRoot, 
     for (auto &sel_col : sel_cols) {
         captions.push_back(sel_col.col_name);
     }
-
+    // std::fstream outfile;
+    //                 outfile.open("output.txt",std::ios::out | std::ios::app);
+    //                 outfile << "ke\n";
+    //                 outfile.close();
     // Print header into buffer
     RecordPrinter rec_printer(sel_cols.size());
     rec_printer.print_separator(context);
     rec_printer.print_record(captions, context);
     rec_printer.print_separator(context);
+    // std::fstream outfile;
+    //                 outfile.open("output.txt",std::ios::out | std::ios::app);
+    //                 outfile << "k2\n";
+    //                 outfile.close();
     // print header into file
     std::fstream outfile;
     outfile.open("output.txt", std::ios::out | std::ios::app);

@@ -38,7 +38,11 @@ class ProjectionExecutor : public AbstractExecutor {
         }
         len_ = curr_offset;
     }
+ std::string getType() override { return "Projection"; }
 
+    size_t tupleLen() const override { return len_; }
+
+    const std::vector<ColMeta> &cols() const override { return cols_; }
     void beginTuple() override {prev_->beginTuple();}
 
     void nextTuple() override {
@@ -46,6 +50,7 @@ class ProjectionExecutor : public AbstractExecutor {
         prev_->nextTuple();
     }
     bool is_end() const override { return prev_->is_end(); }
+
     std::unique_ptr<RmRecord> Next() override {
         assert(!is_end());
         auto &prev_cols = prev_->cols();
