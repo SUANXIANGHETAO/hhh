@@ -196,10 +196,10 @@ void SmManager::desc_table(const std::string& tab_name, Context* context) {
  */
 void SmManager::create_table(const std::string& tab_name, const std::vector<ColDef>& col_defs, Context* context) {
     if (db_.is_table(tab_name)) {
-        std::fstream outfile;
-                    outfile.open("output.txt",std::ios::out | std::ios::app);
-                    outfile << "failure\n";
-                    outfile.close();
+        // std::fstream outfile;
+        //             outfile.open("output.txt",std::ios::out | std::ios::app);
+        //             outfile << "failure\n";
+        //             outfile.close();
         throw TableExistsError(tab_name);
     }
     // Create table meta
