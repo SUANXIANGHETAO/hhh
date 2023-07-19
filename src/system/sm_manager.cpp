@@ -237,10 +237,10 @@ void SmManager::create_table(const std::string& tab_name, const std::vector<ColD
 void SmManager::drop_table(const std::string& tab_name, Context* context) {
      if (!db_.is_table(tab_name)) {
         // std::cout<<"failure"<<std::endl;
-         std::fstream outfile;
-                    outfile.open("output.txt",std::ios::out | std::ios::app);
-                    outfile << "failure\n";
-                    outfile.close();
+        //  std::fstream outfile;
+        //             outfile.open("output.txt",std::ios::out | std::ios::app);
+        //             outfile << "failure\n";
+        //             outfile.close();
         throw TableNotFoundError(tab_name);
     }
     
