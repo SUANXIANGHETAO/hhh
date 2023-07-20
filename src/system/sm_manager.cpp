@@ -256,23 +256,23 @@ void SmManager::drop_table(const std::string& tab_name, Context* context) {
     flush_meta();
 
       // 删除"output.txt"文件中的内容
-    std::ifstream input_file("output.txt");
-    std::ofstream temp_file("temp.txt");
+    // std::ifstream input_file("output.txt");
+    // std::ofstream temp_file("temp.txt");
 
-    std::string line;
-    while (std::getline(input_file, line)) {
-        std::string search_str = "| " + tab_name + " |";
-        if (line.find(search_str) == std::string::npos) {
-            temp_file << line << "\n";
-        }
-    }
+    // std::string line;
+    // while (std::getline(input_file, line)) {
+    //     std::string search_str = "| " + tab_name + " |";
+    //     if (line.find(search_str) == std::string::npos) {
+    //         temp_file << line << "\n";
+    //     }
+    // }
 
-    input_file.close();
-    temp_file.close();
+    // input_file.close();
+    // temp_file.close();
 
-    // 用临时文件替换原文件
-    std::remove("output.txt");
-    std::rename("temp.txt", "output.txt");
+    // // 用临时文件替换原文件
+    // std::remove("output.txt");
+    // std::rename("temp.txt", "output.txt");
 
 }
 

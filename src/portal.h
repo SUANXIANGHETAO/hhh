@@ -68,17 +68,17 @@ class Portal
                 case T_select:
                 {
                        std::fstream outfile;
-                    outfile.open("output.txt",std::ios::out | std::ios::app);
-                    outfile << "po1\n";
-                    outfile.close();
+                    // outfile.open("output.txt",std::ios::out | std::ios::app);
+                    // outfile << "po1\n";
+                    // outfile.close();
                     std::shared_ptr<ProjectionPlan> p = std::dynamic_pointer_cast<ProjectionPlan>(x->subplan_);
-                    outfile.open("output.txt",std::ios::out | std::ios::app);
-                    outfile << "po2\n";
-                    outfile.close();
+                    // outfile.open("output.txt",std::ios::out | std::ios::app);
+                    // outfile << "po2\n";
+                    // outfile.close();
                     std::unique_ptr<AbstractExecutor> root= convert_plan_executor(p, context);
-                    outfile.open("output.txt",std::ios::out | std::ios::app);
-                    outfile << "po3\n";
-                    outfile.close();
+                    // outfile.open("output.txt",std::ios::out | std::ios::app);
+                    // outfile << "po3\n";
+                    // outfile.close();
                     return std::make_shared<PortalStmt>(PORTAL_ONE_SELECT, std::move(p->sel_cols_), std::move(root), plan);
                 }
                     
