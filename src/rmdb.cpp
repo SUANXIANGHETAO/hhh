@@ -130,24 +130,14 @@ void *client_handler(void *sock_fd) {
                     finish_analyze = true;
                     pthread_mutex_unlock(buffer_mutex);
                     // 优化器
-                    // std::fstream outfile;
-                    // outfile.open("output.txt",std::ios::out | std::ios::app);
-                    // outfile << "r1\n";
-                    // outfile.close();
+                
                     std::shared_ptr<Plan> plan = optimizer->plan_query(query, context);
                     // portal
-                    //std::fstream outfile;
-                    // outfile.open("output.txt",std::ios::out | std::ios::app);
-                    // outfile << "r2\n";
-                    // outfile.close();
+             
                     std::shared_ptr<PortalStmt> portalStmt = portal->start(plan, context);
-                    // outfile.open("output.txt",std::ios::out | std::ios::app);
-                    // outfile << "r21\n";
-                    // outfile.close();
+                
                     portal->run(portalStmt, ql_manager.get(), &txn_id, context);
-                    // outfile.open("output.txt",std::ios::out | std::ios::app);
-                    // outfile << "r22\n";
-                    // outfile.close();
+                 
                     portal->drop();
                     
                 } catch (TransactionAbortException &e) {

@@ -40,10 +40,7 @@ std::shared_ptr<Query> Analyze::do_analyze(std::shared_ptr<ast::TreeNode> parse)
             query->cols.push_back(sel_col);
         }
 
-        // std::fstream outfile;
-        //             outfile.open("output.txt",std::ios::out | std::ios::app);
-        //             outfile << "ka\n";
-        //             outfile.close();
+        
         std::vector<ColMeta> all_cols;
 
         get_all_cols(query->tables, all_cols);
@@ -76,10 +73,7 @@ std::shared_ptr<Query> Analyze::do_analyze(std::shared_ptr<ast::TreeNode> parse)
         //             outfile.close();
         if(sm_manager_->fhs_.find(x->tab_name)==sm_manager_->fhs_.end())
         {
-            std::fstream outfile;
-                    outfile.open("output.txt",std::ios::out | std::ios::app);
-                    outfile << "failure\n";
-                    outfile.close();
+         
             throw TableNotFoundError(x->tab_name);
         }
     // 添加上表名

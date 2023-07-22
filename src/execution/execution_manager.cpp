@@ -144,10 +144,7 @@ void QlManager::select_from(std::unique_ptr<AbstractExecutor> executorTreeRoot, 
     rec_printer.print_separator(context);
     rec_printer.print_record(captions, context);
     rec_printer.print_separator(context);
-    // std::fstream outfile;
-    //                 outfile.open("output.txt",std::ios::out | std::ios::app);
-    //                 outfile << "k2\n";
-    //                 outfile.close();
+  
     // print header into file
     std::fstream outfile;
     outfile.open("output.txt", std::ios::out | std::ios::app);

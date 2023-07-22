@@ -20,6 +20,7 @@ class AbstractExecutor {
     Rid _abstract_rid;
 
     Context *context_;
+    //std::vector<Value> currTuple;
 
     virtual ~AbstractExecutor() = default;
 
@@ -45,7 +46,9 @@ class AbstractExecutor {
     virtual ColMeta get_col_offset(const TabCol &target) { return ColMeta();};
 
     std::vector<ColMeta>::const_iterator get_col(const std::vector<ColMeta> &rec_cols, const TabCol &target) {
+      
         auto pos = std::find_if(rec_cols.begin(), rec_cols.end(), [&](const ColMeta &col) {
+            
             return col.tab_name == target.tab_name && col.name == target.col_name;
         });
         if (pos == rec_cols.end()) {

@@ -29,6 +29,12 @@ void RmScan::next() {
     // Todo:
     // 找到文件中下一个存放了记录的非空闲位置，用rid_来指向这个位置
     while (rid_.page_no < file_handle_->file_hdr_.num_pages) {
+        //  std::fstream outfile;
+        //             outfile.open("output.txt",std::ios::out | std::ios::app);
+        //             outfile << file_handle_->file_hdr_.num_pages <<"-\n";
+                    // outfile << rid_.page_no <<"\n";
+                    // outfile << rid_.slot_no <<"+\n";
+                    // outfile.close();
         RmPageHandle ph = file_handle_->fetch_page_handle(rid_.page_no);
         rid_.slot_no = Bitmap::next_bit(true, ph.bitmap, file_handle_->file_hdr_.num_records_per_page, rid_.slot_no);
         if (rid_.slot_no < file_handle_->file_hdr_.num_records_per_page) {
