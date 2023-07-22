@@ -67,10 +67,7 @@ std::shared_ptr<Query> Analyze::do_analyze(std::shared_ptr<ast::TreeNode> parse)
         /** TODO: */
         query->tables = {x->tab_name};
     /*检查表是否存在 */
-        // std::fstream outfile;
-        // outfile.open("output.txt",std::ios::out | std::ios::app);
-        //             outfile << "k2\n";
-        //             outfile.close();
+
         if(sm_manager_->fhs_.find(x->tab_name)==sm_manager_->fhs_.end())
         {
          
@@ -94,27 +91,18 @@ std::shared_ptr<Query> Analyze::do_analyze(std::shared_ptr<ast::TreeNode> parse)
 
     } else if (auto x = std::dynamic_pointer_cast<ast::DeleteStmt>(parse)) {
         //处理where条件
-          std::fstream outfile;
-        // outfile.open("output.txt",std::ios::out | std::ios::app);
-        //             outfile << "k4\n";
-        //             outfile.close();
+
         get_clause(x->conds, query->conds);
         check_clause({x->tab_name}, query->conds);        
     } else if (auto x = std::dynamic_pointer_cast<ast::InsertStmt>(parse)) {
         // 处理insert 的values值
-        // std::fstream outfile;
-        // outfile.open("output.txt",std::ios::out | std::ios::app);
-        //             outfile << "k3\n";
-        //             outfile.close();
+
         for (auto &sv_val : x->vals) {
             query->values.push_back(convert_sv_value(sv_val));
         }
     } else {
         // do nothing
-        //  std::fstream outfile;
-        // outfile.open("output.txt",std::ios::out | std::ios::app);
-        //             outfile << "k5\n";
-        //             outfile.close();
+
     }
     query->parse = std::move(parse);
     return query;
@@ -139,10 +127,17 @@ TabCol Analyze::check_column(const std::vector<ColMeta> &all_cols, TabCol target
         target.tab_name = tab_name;
     } else {
         /** TODO: Make sure target column exists */
-        //  std::fstream outfile;
-        // outfile.open("output.txt",std::ios::out | std::ios::app);
-        //             outfile << "k7\n";
-        //             outfile.close();
+       // 查找是否存在该列
+        auto it = std::find_if(all_cols.begin(), all_cols.end(),
+            [&](const ColMeta& c) {
+                return c.tab_name == target.tab_name
+                    && c.name == target.col_name;
+            });
+
+        if (it == all_cols.end()) {
+            // 不存在则抛出异常
+            throw ColumnNotFoundError(target.col_name);
+        }
     }
     return target;
 }
@@ -159,11 +154,13 @@ void Analyze::get_clause(const std::vector<std::shared_ptr<ast::BinaryExpr>> &sv
     conds.clear();
     for (auto &expr : sv_conds) {
         Condition cond;
+
         cond.lhs_col = {.tab_name = expr->lhs->tab_name, .col_name = expr->lhs->col_name};
         cond.op = convert_sv_comp_op(expr->op);
         if (auto rhs_val = std::dynamic_pointer_cast<ast::Value>(expr->rhs)) {
             cond.is_rhs_val = true;
             cond.rhs_val = convert_sv_value(rhs_val);
+              
         } else if (auto rhs_col = std::dynamic_pointer_cast<ast::Col>(expr->rhs)) {
             cond.is_rhs_val = false;
             cond.rhs_col = {.tab_name = rhs_col->tab_name, .col_name = rhs_col->col_name};
@@ -190,6 +187,7 @@ void Analyze::check_clause(const std::vector<std::string> &tab_names, std::vecto
         if (cond.is_rhs_val) {
             cond.rhs_val.init_raw(lhs_col->len);
             rhs_type = cond.rhs_val.type;
+            
         } else {
             TabMeta &rhs_tab = sm_manager_->db_.get_table(cond.rhs_col.tab_name);
             auto rhs_col = rhs_tab.get_col(cond.rhs_col.col_name);

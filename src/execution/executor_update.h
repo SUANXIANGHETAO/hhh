@@ -38,61 +38,35 @@ class UpdateExecutor : public AbstractExecutor {
         context_ = context;
     }
     std::unique_ptr<RmRecord> Next() override {
-        // Get all necessary index files
-        std::vector<IxIndexHandle *> ihs(tab_.cols.size(), nullptr);
-        for (auto &set_clause : set_clauses_) {
-            auto lhs_col = tab_.get_col(set_clause.lhs.col_name);
-            if (lhs_col->index) {
-                size_t lhs_col_idx = lhs_col - tab_.cols.begin();
-                // lab3 task3 Todo
-                // 获取需要的索引句柄,填充vector ihs
-                ihs[lhs_col_idx] = sm_manager_->ihs_.at(tab_name_ + "." + set_clause.lhs.col_name).get();
-                // lab3 task3 Todo end
-            }
-        }
-        // Update each rid from record file and index file
-        for (auto &rid : rids_) {
-            auto rec = fh_->get_record(rid, context_);
-            // lab3 task3 Todo
-            // Remove old entry from index
-            //  for (size_t i = 0; i < tab_.cols.size(); i++) {
-            //     if (ihs[i] != nullptr) {
-            //         auto col = tab_.cols[i];
-            //         std::string col_value(rec->data + col.offset, col.len);
-            //         ihs[i]->delete_entry(col_value.c_str(),transaction); //transacion 要不要使用？
-            //     }
-            // }
+        //  Make record buffer
+        for (auto &rid:  rids_) {
+            auto Tuple = fh_->get_record(rid,context_);
+                    RmRecord rec(*Tuple);
 
-            // lab3 task3 Todo end
-
-            // record a update operation into the transaction
-            RmRecord update_record{rec->size};
-            memcpy(update_record.data, rec->data, rec->size);
-
-            // lab3 task3 Todo
-            // Update record in record file
-             for (auto &set_clause : set_clauses_) {
-                auto lhs_col = tab_.get_col(set_clause.lhs.col_name);
-                std::string new_value(set_clause.rhs.str_val, lhs_col->len);
-                memcpy(update_record.data + lhs_col->offset, new_value.data(), new_value.size());
-            }
-            fh_->update_record(rid, update_record.data, context_);
-
-            // lab3 task3 Todo end
-
-            // lab3 task3 Todo
-            // Insert new entry into index
+                    
             
-            // for (size_t i = 0; i < tab_.cols.size(); i++) {
-            //     if (ihs[i] != nullptr) {
-            //         auto col = tab_.cols[i];
-            //         std::string col_value(update_record.data + col.offset, col.len);
-            //         ihs[i]->insert_entry(col_value.c_str(), rid); //transaction
-            //     }
-            // }
-    
-            // lab3 task3 Todo end
-        }
+                for (auto &set_clause:  set_clauses_) {
+                    auto &col_name = set_clause.lhs.col_name;
+
+                    auto val = set_clause.rhs;
+                    for( auto &col :tab_.cols){
+                        if (col.name==col_name){
+                            val.init_raw(col.len);
+                            memcpy(rec.data + col.offset, val.raw->data, col.len);
+
+                        }
+                    }    
+                }
+            
+            fh_->update_record(rid,rec.data,context_);
+            // WType wtype = WType::UPDATE_TUPLE;
+            // WriteRecord* writeRecord = new WriteRecord(wtype,tab_name_ , rid);
+            // context_->txn_->append_write_record(writeRecord);
+            }
+
+        
+        
+        
         return nullptr;
     }
 

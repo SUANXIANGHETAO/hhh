@@ -56,4 +56,27 @@ class AbstractExecutor {
         }
         return pos;
     }
+    virtual void feed(const std::map<TabCol, Value> &feed_dict){};
+
+    std::map<TabCol, Value> rec2dict(const std::vector<ColMeta> &cols, const RmRecord *rec) {
+        std::map<TabCol, Value> rec_dict;
+        for (auto &col : cols) {
+            TabCol key = {.tab_name = col.tab_name, .col_name = col.name};
+            Value val;
+            char *val_buf = rec->data + col.offset;
+            if (col.type == TYPE_INT) {
+                val.set_int(*(int *)val_buf);
+            } else if (col.type == TYPE_FLOAT) {
+                val.set_float(*(float *)val_buf);
+            } else if (col.type == TYPE_STRING) {
+                std::string str_val((char *)val_buf, col.len);
+                str_val.resize(strlen(str_val.c_str()));
+                val.set_str(str_val);
+            }
+            assert(rec_dict.count(key) == 0);
+            val.init_raw(col.len);
+            rec_dict[key] = val;
+        }
+        return rec_dict;
+    }
 };
